@@ -1,0 +1,270 @@
+{{inject 'bearerToken' settings.storefront_api.token}}
+<div class="header-container header-mn {{#if theme_settings.sticky_topMenu '===' true}}sticky-header{{/if}}{{#if settings.gift_certificates_enabled}} gift-certificates-enabled {{/if}}">
+    
+    <div class="mbl-head-stick">
+        <div class="top-menu">
+            <div class="content">
+                <!-- NEW BUTTON TO TRIGGER MAIN NAV WHEN STICKY -->
+                <!-- <div class="alt-toggle">
+            <h2 class="container-header btn"><span class="down-arrrow burger-menu"><i class="burger open" aria-hidden="true"><svg><use xlink:href="#icon-Menu" /></svg></i><i class="menu close" aria-hidden="true"><svg><use xlink:href="#icon-close" /></svg></i></span></h2>
+            <h2 class="container-header text"><span class="mega-shop-text"></span></h2>
+          </div> -->
+    
+                <!-- OPTIONAL SHORT MESSAGE LINK -->
+                <!-- <div class="left">
+              <a class="optional-message-link" href="">Put an optional message here.</a>
+            </div> -->
+    
+                {{#if theme_settings.top-banner-show '===' true}}
+                <div class="left-top-banner">
+                    {{> components/custom/top-banner-slider}}
+                </div>
+                {{/if}}
+    
+                <div class="right-top-banner {{#if theme_settings.top-banner-show '===' true}}full-rght{{/if}} {{#if settings.phone_number}}cnt-none{{/if}}">
+                    {{#if settings.phone_number}}
+                    <ul class="right-main mbl-numb">
+                        <li class="navUser-item left phone-number nav-br">
+                            <a href="tel:{{settings.phone_number}}">
+                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+                                    <path
+                                        d="M8.3 12.3l3-2.9c0.3-0.3 0.5-0.7 0.4-1.1l-0.9-6.7c0-0.7-0.8-1.2-1.5-1.2l-7.6 0.5c-0.3 0-0.6 0.3-0.6 0.6-1.6 8-0.6 16.7 5.9 23 6.5 6.4 15.2 7.3 23.4 5.9 0.3 0 0.6-0.3 0.6-0.7v-8c0-0.7-0.5-1.3-1.2-1.4l-6.2-0.4c-0.4 0-0.8 0.1-1.1 0.4l-3 3s-12.5 1.3-11.2-11z"
+                                    ></path>
+                                </svg>
+                                {{settings.phone_number}}
+                            </a>
+                        </li>
+                    </ul>
+                    {{/if}}
+                    <div class="right account-links">
+                        <ul class="right-main">
+                            <div class="rhgt-top">
+                                <div class="nav-br">
+                                    {{> components/common/currency-selector}}
+                                </div>
+                                {{#if settings.phone_number}}
+                                <li class="navUser-item left phone-number nav-br">
+                                    <a href="tel:{{settings.phone_number}}">
+                                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+                                            <path
+                                                d="M8.3 12.3l3-2.9c0.3-0.3 0.5-0.7 0.4-1.1l-0.9-6.7c0-0.7-0.8-1.2-1.5-1.2l-7.6 0.5c-0.3 0-0.6 0.3-0.6 0.6-1.6 8-0.6 16.7 5.9 23 6.5 6.4 15.2 7.3 23.4 5.9 0.3 0 0.6-0.3 0.6-0.7v-8c0-0.7-0.5-1.3-1.2-1.4l-6.2-0.4c-0.4 0-0.8 0.1-1.1 0.4l-3 3s-12.5 1.3-11.2-11z"
+                                            ></path>
+                                        </svg>
+                                        {{settings.phone_number}}
+                                    </a>
+                                </li>
+                                {{/if}} {{#if settings.gift_certificates_enabled}}
+                                <li class="navUser-item gift-certficates nav-br">
+                                    <a class="navUser-action" href="{{urls.gift_certificate.purchase}}">{{lang 'cart.gift_certificate'}}</a>
+                                </li>
+                                {{/if}} {{#if settings.show_wishlist}}
+                                <li class="navUser-item wsh-link nav-br">
+                                    <a class="navUser-action" href="/wishlist.php">
+                                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+                                            <path
+                                                d="M0.6 13.9c0.4 1.4 1 2.6 2.1 3.6l13.5 14 13.5-14c1-1 1.7-2.2 2.1-3.6s0.4-2.7 0-4.1c-0.4-1.3-1-2.5-2.1-3.5-1-1-2.2-1.7-3.5-2.1s-2.7-0.4-4.1 0c-1.4 0.4-2.6 1-3.5 2.1l-2.3 2.8-2.3-2.8c-1-1-2.2-1.7-3.5-2.1s-2.7-0.4-4.1 0c-1.4 0.4-2.6 1-3.6 2.1-1 1-1.7 2.2-2.1 3.5s-0.4 2.7 0 4.1z"
+                                            ></path>
+                                        </svg>
+                                        Wishlist
+                                    </a>
+                                </li>
+                                {{/if}} {{#if settings.account_creation_enabled}}
+                                <li class="navUser-item navUser-item--account nav-br">
+                                    <a class="navUser-action anct-link">
+                                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+                                            <path
+                                                d="M31.8 27.3c-1.2-5.2-4.7-9-9.5-10.8 2.5-2 4-5.2 3.4-8.7-0.6-4-4-7.3-8.2-7.8-5.7-0.6-10.6 3.8-10.6 9.3s1.4 5.5 3.5 7.2c-4.7 1.7-8.3 5.6-9.5 10.8-0.4 1.9 1.1 3.7 3.1 3.7h24.6c2 0 3.5-1.8 3.1-3.7z"
+                                            ></path>
+                                        </svg>
+                                        <span class="anct-title">My Account</span>
+                                    </a>
+                                    <ul class="acnt-popup">
+                                        {{#if customer}}
+                                        <li>
+                                            <a class="navUser-action" href="{{urls.account.orders.all}}">{{lang 'account.nav.orders'}}</a>
+                                        </li>
+                                        {{#if settings.returns_enabled}}
+                                        <li>
+                                            <a class="navUser-action" href="{{urls.account.returns}}">{{lang 'account.nav.returns'}}</a>
+                                        </li>
+                                        {{/if}}
+                                        <li>
+                                            <a class="navUser-action" href="{{urls.account.inbox}}">Messages</a>
+                                        </li>
+                                        <li>
+                                            <a class="navUser-action" href="{{urls.account.addresses}}">{{lang 'account.nav.addresses'}}</a>
+                                        </li>
+                                        {{#if settings.show_payment_methods}}
+                                        <li>
+                                            <a class="navUser-action" href="{{urls.account.payment_methods.all}}">{{lang 'account.nav.payment_methods'}}</a>
+                                        </li>
+                                        {{/if}} {{#if settings.show_wishlist}}
+                                        <li>
+                                            <a class="navUser-action" href="/wishlist.php">Wishlist</a>
+                                        </li>
+                                        {{/if}}
+                                        <li>
+                                            <a class="navUser-action" href="{{urls.account.recent_items}}">{{lang 'account.nav.recently_viewed'}}</a>
+                                        </li>
+                                        <li>
+                                            <a class="navUser-action" href="{{urls.account.details}}">{{lang 'account.nav.settings'}}</a>
+                                        </li>
+                                        <li>
+                                            <a class="navUser-action" href="{{urls.auth.logout}}">{{lang 'common.logout'}}</a>
+                                        </li>
+                                        {{else}}
+                                        <li>
+                                            <a class="navUser-action login" href="{{urls.auth.login}}">{{lang 'common.login'}}</a>
+                                        </li>
+                                        <li>
+                                            <a class="navUser-action create" href="{{urls.auth.create_account}}">{{lang 'Sign Up'}}</a>
+                                        </li>
+                                        {{/if}}
+                                    </ul>
+                                </li>
+                                {{/if}}
+                                <li class="navUser-item navUser-item--cart {{#if cart.items}} countPill--positive{{/if}}">
+                                    <a class="navUser-action" data-cart-preview data-dropdown="cart-preview-dropdown" data-options="align:right" href="{{urls.cart}}">
+                                        <span class="navUser-item-cartLabel">
+                                            <i class="cart-icon" aria-hidden="true">
+                                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+                                                    <path
+                                                        d="M29.9 6.2h-21.3v-1.6c0-1.4-1.2-2.6-2.6-2.6h-4.2c-0.9 0-1.6 0.7-1.6 1.7s0.7 1.7 1.7 1.7h3.4v17.1c0 1.4 1.2 2.6 2.6 2.6h19.3c0.9 0 1.7-0.7 1.7-1.7s-0.7-1.7-1.7-1.7h-18.6v-1.2l21.5-2.8c1.1-0.2 1.9-1.1 2-2.2v-7.1c0-1.2-1-2.1-2.1-2.1zM6.5 25.3c-1.6 0-2.8 1.3-2.8 2.8s1.3 2.8 2.8 2.8 2.8-1.3 2.8-2.8-1.3-2.8-2.8-2.8zM24.4 25.3c-1.6 0-2.8 1.3-2.8 2.8s1.3 2.8 2.8 2.8 2.8-1.3 2.8-2.8-1.3-2.8-2.8-2.8z"
+                                                    ></path>
+                                                </svg>
+                                            </i>
+                                        </span>
+                                        <span class="countPill{{#if cart.items}} countPill--positive{{/if}} cart-quantity">{{cart.quantity}}</span>
+                                    </a>
+    
+                                    <div class="dropdown-menu" id="cart-preview-dropdown" data-dropdown-content aria-hidden="true"></div>
+                                </li>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    
+        <div class="header-container mbl-main full-width {{#if theme_settings.slider_width '===' 'full-width'}} full-width-auto {{/if}} full-width{{#if theme_settings.header-layout '!==' 'full-width'}} in-container{{/if}}">
+            <div class="header-padding{{#if theme_settings.header-layout '===' 'in-container-with-padding-no-margin'}} in-container-with-padding-no-margin{{/if}}">
+                <div class="header-padding{{#if theme_settings.header-layout '===' 'in-container-with-padding'}} in-container-with-padding{{/if}}">
+                    <header class="header" role="banner">
+                        <a href="#" class="mobileMenu-toggle" data-mobile-menu-toggle="menu">
+                            <span class="mobileMenu-toggleIcon">Toggle menu</span>
+                        </a>
+    
+                        {{#if page_type '===' 'default'}}
+                        <div class="header-logo header-logo--{{theme_settings.logo-position}}">
+                            {{> components/common/store-logo}}
+                        </div>
+                        {{else}}
+                        <div class="header-logo header-logo--{{theme_settings.logo-position}}">
+                            {{> components/common/store-logo}}
+                        </div>
+                        {{/if}} {{#if theme_settings.logo-position '===' 'left'}}
+                         <span id="menu" class="is-srOnly mbl-tgl" style="display: none !important;"></span>
+                        <div class="mbl-srch-icon">
+                            <svg class="search-icon"><use xlink:href="#icon-search"></use></svg>
+                        </div>
+                        <div class="navPages-container dsk-search-bar mbl-srchbar inside-header left-logo search-container not-sticky" data-menu>
+                            <nav class="navPages">
+                                <span class="srch-close">
+                                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+                                        <path d="M0 2.6l13.4 13.4-13.4 13.3 2.6 2.6 13.4-13.4 13.4 13.4 2.6-2.6-13.4-13.4 13.4-13.4-2.6-2.5-13.4 13.4-13.3-13.4-2.7 2.6z"></path>
+                                    </svg>
+                                </span>
+                                <div class="navPages-quickSearch right searchbar">
+                                    {{> components/common/quick-search}}
+                                </div>
+                                
+                                <!-- Shopper Approved Milestone Award - templates/components/common/header.html -->
+                                <a href="https://www.shopperapproved.com/reviews/compressorpros.com" class="shopperlink sa-milestone-award"><img  src="https://www.shopperapproved.com/award/images/39060-large.png" style="border: 0" alt="5 Star Excellence award from Shopper Approved for collecting at least 100 5 star reviews" oncontextmenu="var d = new Date(); alert('Copying Prohibited by Law - This image and all included logos are copyrighted by shopperapproved \251 '+d.getFullYear()+'.'); return false;" /></a><script type="text/javascript">(function() { var js = window.document.createElement("script"); js.src = '//www.shopperapproved.com/seals/certificate.js'; js.type = "text/javascript"; document.getElementsByTagName("head")[0].appendChild(js); })();</script>
+                                <style>
+                                    .sa-milestone-award img {
+                                        max-width: 100px;
+                                    }
+                                </style>
+                                <!-- END Shopper Approved Milestone Award - templates/components/common/header.html -->
+                                
+                            </nav>
+                        </div>
+                        <div class="navPages-container mbl-search-bar mbl-srchbar inside-header left-logo search-container not-sticky" data-menu>
+                            <nav class="navPages">
+                                <span class="srch-close">
+                                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+                                        <path d="M0 2.6l13.4 13.4-13.4 13.3 2.6 2.6 13.4-13.4 13.4 13.4 2.6-2.6-13.4-13.4 13.4-13.4-2.6-2.5-13.4 13.4-13.3-13.4-2.7 2.6z"></path>
+                                    </svg>
+                                </span>
+                                <div class="navPages-quickSearch right searchbar">
+                                    {{> components/common/quick-search}}
+                                </div>
+                                
+                                <!-- Shopper Approved Milestone Award - templates/components/common/header.html -->
+                                <a href="https://www.shopperapproved.com/reviews/compressorpros.com" class="shopperlink sa-milestone-award"><img  src="https://www.shopperapproved.com/award/images/39060-large.png" style="border: 0" alt="5 Star Excellence award from Shopper Approved for collecting at least 100 5 star reviews" oncontextmenu="var d = new Date(); alert('Copying Prohibited by Law - This image and all included logos are copyrighted by shopperapproved \251 '+d.getFullYear()+'.'); return false;" /></a><script type="text/javascript">(function() { var js = window.document.createElement("script"); js.src = '//www.shopperapproved.com/seals/certificate.js'; js.type = "text/javascript"; document.getElementsByTagName("head")[0].appendChild(js); })();</script>
+                                <style>
+                                    .sa-milestone-award img {
+                                        max-width: 100px;
+                                    }
+                                </style>
+                                <!-- END Shopper Approved Milestone Award - templates/components/common/header.html -->
+                                
+                            </nav>
+                        </div>
+                        {{/if}} {{#if theme_settings.logo-position '===' 'center'}}
+                        <div class="mbl-srch-icon">
+                            <svg class="search-icon"><use xlink:href="#icon-search"></use></svg>
+                        </div>
+                        <div class="navPages-container dsk-search-bar mbl-srchbar inside-header center-logo search-container not-sticky" id="menu" data-menu>
+                            <nav class="navPages">
+                                <span class="srch-close">
+                                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+                                        <path d="M0 2.6l13.4 13.4-13.4 13.3 2.6 2.6 13.4-13.4 13.4 13.4 2.6-2.6-13.4-13.4 13.4-13.4-2.6-2.5-13.4 13.4-13.3-13.4-2.7 2.6z"></path>
+                                    </svg>
+                                </span>
+                                <div class="navPages-quickSearch right searchbar">
+                                    {{> components/common/quick-search}}
+                                </div>
+                            </nav>
+                        </div>
+                        <div class="navPages-container mbl-search-bar mbl-srchbar inside-header center-logo search-container not-sticky" id="menu" data-menu>
+                            <nav class="navPages">
+                                <span class="srch-close">
+                                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+                                        <path d="M0 2.6l13.4 13.4-13.4 13.3 2.6 2.6 13.4-13.4 13.4 13.4 2.6-2.6-13.4-13.4 13.4-13.4-2.6-2.5-13.4 13.4-13.3-13.4-2.7 2.6z"></path>
+                                    </svg>
+                                </span>
+                                <div class="navPages-quickSearch right searchbar">
+                                    {{> components/common/quick-search}}
+                                </div>
+                            </nav>
+                        </div>
+                        {{/if}}
+                        <div class="clear"></div>
+                        <div class="mobile-menu navPages-container" id="menu" data-menu>
+                            {{> components/common/navigation-menu}}
+                        </div>
+                    </header>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+<div class="main-nav-container{{#if theme_settings.header-layout '!==' 'in-container'}} full-width{{/if}} {{#if theme_settings.header-layout '===' 'in-container'}} in-container{{/if}}">
+  <div class="navPages-container main-nav" id="menu" data-menu>
+        {{> components/common/navigation-menu}}
+  </div>
+</div>
+
+{{#and (if theme_settings.show-vhfilter '===' true) (if theme_settings.hide_category)}}
+<div class="custom-vehicle {{#if theme_settings.body_width '===' 960}}nine-sixty{{/if}} {{#if theme_settings.body_width '===' 1170}}eleven-seventy{{/if}} {{#if theme_settings.body_width '===' 1280}}twelve-eighty{{/if}} {{#if theme_settings.body_width '===' 1366}}thirteen-sixty-six{{/if}} {{#if theme_settings.body_width '===' 1440}}fourteen-forty{{/if}} {{#if theme_settings.header-layout '!==' 'in-container'}}header-full-width{{/if}} {{#if theme_settings.header-layout '===' 'in-container'}}header-in-container{{/if}}
+">
+    {{> components/custom/add-vehicle}}
+</div>  
+{{/and}}
+
+</div>
+{{{region name="header_bottom--global"}}}
+</div>

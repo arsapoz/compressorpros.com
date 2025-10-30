@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html class="no-js" lang="{{ locale_name }}">
+<head>
+    <title>{{ head.title }}</title>
+    {{{ resourceHints }}}
+    {{{ head.meta_tags }}}
+    {{{ head.config }}}
+    {{#block "head"}} {{/block}}
+    <link href="{{ head.favicon }}" rel="shortcut icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <script>
+        // Change document class from no-js to js so we can detect this in css
+        document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+    </script>
+    <script async src="{{cdn 'assets/dist/theme-bundle.head_async.js' resourceHint='preload' as='script'}}"></script>
+    {{getFontsCollection font-display='block'}}
+    {{{stylesheet '/assets/css/theme.css'}}}
+    {{{head.scripts}}}
+    {{{head.rsslinks}}}
+    {{inject 'themeSettings' theme_settings}}
+    {{inject 'genericError' (lang 'common.generic_error')}}
+    {{inject 'maintenanceMode' settings.maintenance}}
+    {{~inject 'adminBarLanguage' (langJson 'admin')}}
+    {{inject 'urls' urls}}
+    {{inject 'secureBaseUrl' settings.secure_base_url}}
+    {{inject 'cartId' cart_id}}
+    {{~inject 'channelId' settings.channel_id}}
+    {{inject 'template' template}}
+</head>
+    <body id="body" class="product-page-layout {{#if theme_settings.product_page_layout '===' 'with-sidenav'}} with-sidenav{{else}} no-sidenav{{/if}} main{{#if theme_settings.body_width '===' 960}} nine-sixty{{/if}} {{#if theme_settings.body_width '===' 1170}} eleven-seventy {{/if}} {{#if theme_settings.body_width '===' 1280}} twelve-eighty {{/if}} {{#if theme_settings.body_width '===' 1366}} thirteen-sixty-six {{/if}} {{#if theme_settings.body_width '===' 1440}} fourteen-forty {{/if}} {{#if theme_settings.header-layout '!==' 'in-container'}} header-full-width{{/if}} {{#if theme_settings.header-layout '===' 'in-container'}} header-in-container{{/if}} {{#if theme_settings.show_product_quantity_box '===' true}} qty-box-visible{{/if}}">
+
+        {{{snippet 'header'}}}
+        <svg data-src="{{cdn 'img/icon-sprite.svg'}}" class="icons-svg-sprite"></svg>
+
+        {{#and settings.privacy_cookie settings.is_eu_ip_address}}
+            {{> components/common/cookie}}
+        {{/and}}
+
+        {{> components/common/header }}
+        {{> components/common/body }}
+        {{> components/common/footer-product}}
+
+        <script>window.__webpack_public_path__ = "{{cdn 'assets/dist/'}}";</script>
+        <script src="{{cdn 'assets/dist/theme-bundle.main.js'}}"></script>
+
+        <script>
+            // Exported in app.js
+            window.stencilBootstrap("{{page_type}}", {{jsContext}}).load();
+        </script>
+
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.min.css">
+
+        <!-- JS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" async></script>
+        <script>
+        // This will make sure WebFont.load is only used in the browser.
+        if (typeof window === 'undefined') {
+	        var WebFont = require('webfont');
+	        WebFont.load({
+		      google: {
+			      families: ['Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,', 'Roboto+Condensed:300,300i,400,400i,700,700i']
+		        },
+	        });
+        }
+        </script>
+
+        {{{footer.scripts}}}
+        
+        <!-- shopper approved style layout/product-new.html -->
+        
+        <style>
+            #ab-tiny-widget {
+              display: inline-block !important;
+              font-size: 12px !important;
+              vertical-align: 8px !important; 
+            }
+            span#ab-tiny-widget {
+                vertical-align: 8px !important;
+            }
+            
+            .star_container .group-stars .ind_cnt {
+              display: inline-block;
+              font-size: 12px;
+              vertical-align: 3px;
+              text-align: left;
+              width: 100%;
+            }
+        
+            @media screen and (max-width: 576px) {
+              .star_container .group-stars .ind_cnt {
+                display: block;
+                padding-left: 0;
+                padding-bottom: 5px;
+                text-align: left;
+              }
+              
+              #add-to-cart-wrapper #approve_button_id{
+                  width: 100% !important;
+              }
+            } 
+            
+            .SA__wrapper .SA__widget .SA__widget_item .SA__widget_content.SA__overall a {
+
+                font: normal normal bold 13px / 20px Roboto !important;
+            }
+            #SA_wrapper_454x1m6nBVqN .css-full-star::before { font-size: 25px !important; }
+
+        </style>
+         
+        
+        <script type="text/javascript"> function saLoadScript(src) { var js = window.document.createElement('script'); js.src = src; js.type = 'text/javascript'; document.getElementsByTagName("head")[0].appendChild(js); } saLoadScript("https://www.shopperapproved.com/widgets/group2.0/39060.js"); </script>
+        
+        
+        <!-- shopper approved style layout/product-new.html -->
+
+    </body>
+</html>

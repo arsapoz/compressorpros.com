@@ -1,0 +1,127 @@
+{{> components/products/filter sort=pagination.category.sort}}
+
+{{#if theme_settings.product_layout_view '===' 'grid'}}
+  <form class="grid-only" action="{{urls.compare}}" method='POST' {{#if settings.data_tag_enabled}} data-list-name="Category: {{category.name}}" {{/if}} data-product-compare>
+    {{#if settings.data_tag_enabled}}
+      {{> components/products/grid products=category.products show_compare=category.show_compare theme_settings=theme_settings event="list" }}
+    {{else}}
+      {{> components/products/grid products=category.products show_compare=category.show_compare theme_settings=theme_settings}}
+    {{/if}}
+  </form>
+{{/if}}
+
+{{#if theme_settings.product_layout_view '===' 'list'}}
+  <form class="list-only" action="{{urls.compare}}" method='POST' {{#if settings.data_tag_enabled}} data-list-name="Category: {{category.name}}" {{/if}} data-product-compare>
+    {{#if settings.data_tag_enabled}}
+      {{> components/products/list products=category.products show_compare=category.show_compare theme_settings=theme_settings event="list" }}
+    {{else}}
+      {{> components/products/list products=category.products show_compare=category.show_compare theme_settings=theme_settings}}
+    {{/if}}
+  </form>
+{{/if}}
+
+{{#if theme_settings.product_layout_view '===' 'both_grid_default'}}
+  <form class="both-grid-default" action="{{urls.compare}}" method='POST' {{#if settings.data_tag_enabled}} data-list-name="Category: {{category.name}}" {{/if}} data-product-compare>
+    {{#if settings.data_tag_enabled}}
+      {{> components/products/grid-default products=category.products show_compare=category.show_compare theme_settings=theme_settings event="list" }}
+      {{> components/products/list products=category.products show_compare=category.show_compare theme_settings=theme_settings event="list" }}
+    {{else}}
+      {{> components/products/grid-default products=category.products show_compare=category.show_compare theme_settings=theme_settings}}
+      {{> components/products/list products=category.products show_compare=category.show_compare theme_settings=theme_settings}}
+    {{/if}}
+    <div class="clear"></div>
+  </form>
+{{/if}}
+
+{{#if theme_settings.product_layout_view '===' 'both_list_default'}}
+  <form class="both-list-default" action="{{urls.compare}}" method='POST' {{#if settings.data_tag_enabled}} data-list-name="Category: {{category.name}}" {{/if}} data-product-compare>
+    {{#if settings.data_tag_enabled}}
+      {{> components/products/list-default products=category.products show_compare=category.show_compare theme_settings=theme_settings event="list" }}
+      {{> components/products/grid products=category.products show_compare=category.show_compare theme_settings=theme_settings event="list" }}
+    {{else}}
+      {{> components/products/list-default products=category.products show_compare=category.show_compare theme_settings=theme_settings}}
+      {{> components/products/grid products=category.products show_compare=category.show_compare theme_settings=theme_settings}}
+    {{/if}}
+    <div class="clear"></div>
+  </form>
+{{/if}}
+
+{{> components/common/paginator pagination.category}}
+     
+     
+    
+    
+    
+ <!-- answerbase category page components/product/product-listing.html 
+        <div class="abcat"></div> 
+        <div class="clear"></div>
+        
+       <!-- 
+        <script>
+            window.addEventListener('DOMContentLoaded', function() {
+              var sa_productCatURL = document.querySelector("link[rel='canonical']").href;
+                fetch('/graphql', {
+                    method: 'POST',
+                    credentials: 'same-origin',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer {{ settings.storefront_api.token }}' // use auto-generated token
+                    },
+                      body: JSON.stringify({
+                query: `
+                    query CategoryByUrl($saProductCatURL: String!) {
+                      site {
+                        route(path: $saProductCatURL) {
+                          node {
+                            id
+                            ... on Category {
+                              name
+                              entityId
+                              description
+                              defaultImage {
+                                url(width: 200)
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }`,
+                    variables: {
+                      saProductCatURL: sa_productCatURL // Pass the product category url value here
+                    }
+            })
+                })
+                .then(res => res.json())
+                .then(data => {
+                    console.log('data', data);
+                    console.log('Category Entity ID:', data.data.site.route.node.entityId);
+                    // Dynamically insert the script element with the required data
+                    let script = document.createElement('script');
+                    script.type = 'text/javascript';
+                    script.src = 'https://compressorpros.services.answerbase.com/javascript/widget/full-featured-widget.min.js';
+                    script.setAttribute('data-external-product-category-id', data.data.site.route.node.entityId);
+                    script.setAttribute('data-product-category-title', data.data.site.route.node.name);
+                   // script.setAttribute('data-product-category-image', data.data.site.route.node.defaultImage.url != null ? data.data.site.route.node.defaultImage.url : "");
+                    script.setAttribute('data-product-category-url', sa_productCatURL);
+                    script.setAttribute('data-open-ask', 'expand');
+                    script.setAttribute('data-insert-after', '.banners.bottom');
+                    script.defer = true;
+                    document.body.appendChild(script);
+                });
+            });
+        </script>
+        
+        <style>
+            .answerbase-widget {
+                width: 100% !important;
+                
+            }
+            .compare {
+                margin-top: 10px;
+            }
+        </style>
+        
+        
+        <!-- answerbase category page components/product/product-listing.html -->
+ 
+   

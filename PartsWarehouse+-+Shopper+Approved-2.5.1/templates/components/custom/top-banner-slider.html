@@ -1,0 +1,19 @@
+<div class="bnr-slider" data-slick='{
+    "arrows": false,
+    "mobileFirst": true,
+    "slidesToShow": 1,
+    "slidesToScroll": 1,
+    "dots": false,
+    "autoplay": true,
+    "autoplaySpeed": 3500
+}'>
+    {{#if theme_settings.top-banner-cnt1}}
+        <p class="banner-text">{{theme_settings.top-banner-cnt1}}</p>
+    {{/if}} 
+    {{#if theme_settings.top-banner-cnt2}}
+        <p class="banner-text">{{theme_settings.top-banner-cnt2}}</p>
+    {{/if}} 
+    {{#if theme_settings.top-banner-cnt3}}
+    <p class="banner-text">{{theme_settings.top-banner-cnt3}}</p>
+    {{/if}}
+</div>
